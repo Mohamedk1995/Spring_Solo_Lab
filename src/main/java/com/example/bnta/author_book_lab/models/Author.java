@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "books")
 public class Author {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
