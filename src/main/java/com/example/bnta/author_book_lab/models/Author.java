@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "books")
+@Table(name = "authors")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,20 +17,12 @@ public class Author {
     @Column
     private String name;
 
-    @Column
-    private String title;
-
-    @Column
-    private String genre;
-
     @OneToMany(mappedBy = "author") //mapped by = name of the property in 'Book' that's to be FK
     @JsonIgnoreProperties({"author"})
     private List<Book> books;
 
-    public Author(String name, String title, String genre) {
+    public Author(String name) {
         this.name = name;
-        this.title = title;
-        this.genre = genre;
         this.books = new ArrayList<Book>();
     }
 
@@ -47,22 +39,6 @@ public class Author {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public List<Book> getBooks() {
