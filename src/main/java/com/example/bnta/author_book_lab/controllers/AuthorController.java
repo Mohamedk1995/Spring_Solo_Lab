@@ -18,10 +18,11 @@ public class AuthorController {
     AuthorRepository authorRepository;
 
     //INDEX
-    @GetMapping
-    public ResponseEntity<List<Author>> getAllAuthors() {
-        return new ResponseEntity<>(authorRepository.findAll(), HttpStatus.OK);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<Author>> getAllAuthors() {
+//        return new ResponseEntity<>(authorRepository.findAll(), HttpStatus.OK);
+//    }
+
 
     //SHOW
     @GetMapping(value="/{id}")//localhost:8080/authors/1
