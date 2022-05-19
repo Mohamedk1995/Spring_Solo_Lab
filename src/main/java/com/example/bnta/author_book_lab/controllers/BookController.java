@@ -6,13 +6,13 @@ import com.example.bnta.author_book_lab.repositories.AuthorRepository;
 import com.example.bnta.author_book_lab.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.testng.annotations.Test;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -25,8 +25,19 @@ public class BookController {
     BookRepository bookRepository;
 
     //INDEX
-    @GetMapping
-    public ResponseEntity<List<Book>> getAllBooks() {
+//    @GetMapping
+//    public ResponseEntity<List<Book>> getAllBooks() {
+//        return new ResponseEntity<>(bookRepository.findAll(), HttpStatus.OK);
+//    }
+
+    @GetMapping //localhost:8080/books
+    // ?title=Hamlet for if statement
+    public ResponseEntity<List<Book>> getAllBooksAndFilters(
+            @RequestParam(required = false, name = "title") String title
+    ){
+        if(title != null){
+            return new ResponseEntity<>(bookRepository.findByTitle(title), HttpStatus.OK);
+        }
         return new ResponseEntity<>(bookRepository.findAll(), HttpStatus.OK);
     }
 
@@ -47,4 +58,8 @@ public class BookController {
         bookRepository.deleteById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+    //Find by title
+
+
 }

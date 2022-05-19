@@ -3,6 +3,7 @@ package com.example.bnta.author_book_lab.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -59,4 +60,5 @@ public class Book {
     public void setAuthor(Author author) {
         this.author = author;
     }
+
 }
