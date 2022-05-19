@@ -1,6 +1,7 @@
 package com.example.bnta.author_book_lab.controllers;
 
 import com.example.bnta.author_book_lab.models.Author;
+import com.example.bnta.author_book_lab.models.Book;
 import com.example.bnta.author_book_lab.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,16 @@ public class AuthorController {
 //        return new ResponseEntity<>(authorRepository.findAll(), HttpStatus.OK);
 //    }
 
+    @GetMapping //localhost:8080/authors
+    // ?title=Hamlet for if statement
+    public ResponseEntity<List<Author>> getAllAuthorsAndFilters(
+            @RequestParam(required = false, name = "name") String name
+    ){
+        if(name != null){
+            return new ResponseEntity<>(authorRepository.findByName(name), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(authorRepository.findAll(), HttpStatus.OK);
+    }
 
     //SHOW
     @GetMapping(value="/{id}")//localhost:8080/authors/1
