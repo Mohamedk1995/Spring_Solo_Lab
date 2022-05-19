@@ -1,5 +1,7 @@
 package com.example.bnta.author_book_lab.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,17 +14,18 @@ public class Book {
     private Long id;
 
     @Column
-    private String name;
+    private String title;
 
     @Column
     private String genre;
 
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
+    @JsonIgnoreProperties({"book"})
     private Author author;
 
-    public Book(String name, String genre, Author author) {
-        this.name = name;
+    public Book(String title, String genre, Author author) {
+        this.title = title;
         this.genre = genre;
         this.author = author;
     }
@@ -33,12 +36,12 @@ public class Book {
     public Long getId() {
         return id;
     }
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getGenre() {
