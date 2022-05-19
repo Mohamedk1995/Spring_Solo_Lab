@@ -24,7 +24,7 @@ public class BookController {
     @Autowired
     BookRepository bookRepository;
 
-    //INDEX
+//    //INDEX
 //    @GetMapping
 //    public ResponseEntity<List<Book>> getAllBooks() {
 //        return new ResponseEntity<>(bookRepository.findAll(), HttpStatus.OK);
@@ -40,6 +40,7 @@ public class BookController {
         }
         return new ResponseEntity<>(bookRepository.findAll(), HttpStatus.OK);
     }
+
 
     //SHOW
     @GetMapping(value = "/{id}")//localhost:8080/books/1
